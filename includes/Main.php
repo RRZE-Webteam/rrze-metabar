@@ -34,6 +34,7 @@ class Main
 
         //$settings = new Settings($this->pluginFile);
         //$settings->onLoaded();
+        new Metabar();
 
     }
 
