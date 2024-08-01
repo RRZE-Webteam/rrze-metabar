@@ -14,13 +14,9 @@ body.rrze-metabar {
     left: 0;
     height: var(--rrze-metabar--height);
     width: 100%;
-    min-width: 600px;
     z-index: 99999;
     background: #3862AD;
     color: #fff;
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
     .admin-bar & {
         margin-top: var(--wp-admin--admin-bar--height, 32px) !important;
     }
@@ -28,22 +24,62 @@ body.rrze-metabar {
     a {
         color: #fff;
         text-decoration-color: #fff;
+        text-decoration-thickness: 1px;
+        &:hover, &:focus, &:active {
+            text-decoration-thickness: 2px;
+        }
     }
 
     .rrze-metabar-content {
         width: 1400px;
         max-width: 100%;
         margin: 0 auto;
-        padding: 5px 15px;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        @media (min-width: 992px) {
+            padding: 5px 15px;
+        }
     }
 
-    .logo-container {
+    .rrze-metabar-faublogs-link,
+    .rrze-metabar-links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    }
+
+    .rrze-metabar-faublogs-link {
         margin-right: 2em;
-    }
-
-    .faublogs-logo {
-        height: 30px;
-        width: auto;
-        margin-right: 1em;
+        a {
+            font-weight: bold;
+            letter-spacing: .05em;
+            text-decoration: none;
+            &:hover, &:focus, &:active {
+                text-decoration: underline
+            }
+        }
+        .logo-container {
+            display: inline-block;
+        }
+        .faublogs-logo {
+            display: inline-block;
+            vertical-align: middle;
+            height: 30px;
+            width: auto;
+            margin-right: 1em;
+        }
+        .faublogs-text {
+            vertical-align: middle;
+        }
     }
 }

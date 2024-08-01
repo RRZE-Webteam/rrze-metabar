@@ -21,7 +21,6 @@ defined('ABSPATH') || exit;
 
 const RRZE_PHP_VERSION = '8.0';
 const RRZE_WP_VERSION = '6.1';
-const RRZE_METABAR_TEXTDOMAIN = 'rrze-metabar';
 const RRZE_PLUGIN_FILE = __FILE__;
 define('RRZE_METABAR_ROOT', dirname(__FILE__));
 const RRZE_METABAR_VERSION = '1.0.0';
@@ -57,7 +56,7 @@ add_action('plugins_loaded', __NAMESPACE__ . '\loaded');
  */
 function load_textdomain()
 {
-    load_plugin_textdomain(RRZE_METABAR_TEXTDOMAIN, false, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
+    load_plugin_textdomain('rrze-metabar', false, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
 }
 
 
@@ -69,10 +68,10 @@ function system_requirements()
     $error = '';
     if (version_compare(PHP_VERSION, RRZE_PHP_VERSION, '<')) {
         /* Übersetzer: 1: aktuelle PHP-Version, 2: erforderliche PHP-Version */
-        $error = sprintf(__('The server is running PHP version %1$s. The Plugin requires at least PHP version %2$s.', RRZE_METABAR_TEXTDOMAIN), PHP_VERSION, RRZE_PHP_VERSION);
+        $error = sprintf(__('The server is running PHP version %1$s. The Plugin requires at least PHP version %2$s.', 'rrze-metabar'), PHP_VERSION, RRZE_PHP_VERSION);
     } elseif (version_compare($GLOBALS['wp_version'], RRZE_WP_VERSION, '<')) {
         /* Übersetzer: 1: aktuelle WP-Version, 2: erforderliche WP-Version */
-        $error = sprintf(__('The server is running WordPress version %1$s. The Plugin requires at least WordPress version %2$s.', RRZE_METABAR_TEXTDOMAIN), $GLOBALS['wp_version'], RRZE_WP_VERSION);
+        $error = sprintf(__('The server is running WordPress version %1$s. The Plugin requires at least WordPress version %2$s.', 'rrze-metabar'), $GLOBALS['wp_version'], RRZE_WP_VERSION);
     }
 
     return $error;

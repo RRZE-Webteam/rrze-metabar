@@ -13,26 +13,18 @@ class Metabar {
     }
 
     public function render_metabar() {
-        $output = '<div id="rrze-metabar"><div class="rrze-metabar-content">';
-        $output .= '<a href="https://blogs.fau.de" class="logo-container"><img src="' . plugins_url() . '/rrze-metabar/assets/img/logo-faublogs.svg" class="faublogs-logo" alt="FAU-Blogs Logo"/>' . __('FAU-Blogs', RRZE_METABAR_TEXTDOMAIN). '</a>' . "Moin!";
-        $output .= '</div></div>';
-        //var_dump($this->get_svg_icon('logo-faublogs.svg'));
+        $output = '<div id="rrze-metabar"><nav class="rrze-metabar-content">'
+            . '<ul class="rrze-metabar-faublogs-link"><li><a href="https://blogs.fau.de" class="logo-container">'
+            . '<img src="' . plugins_url() . '/rrze-metabar/assets/img/logo-faublogs.svg" class="faublogs-logo" alt="FAU-Blogs Logo"><span class="faublogs-text">' . __('FAU-Blogs', 'rrze-metabar'). '</span>'
+            . '</a></li></ul>'
+            . '<ul class="rrze-metabar-links"><li><a href="' . get_bloginfo('url') . '/kontakt">' . __('Contact', 'rrze-metabar') . '</a></li></ul>'
+            . '</nav></div>';
         echo $output;
     }
 
     public function add_body_class($classes) {
         $classes[] = 'rrze-metabar';
         return array_filter($classes);
-    }
-
-    private function get_svg_icon($filename) {
-        $path = RRZE_METABAR_ROOT . '/assets/img/';
-        $file = $path . $filename;
-        if (!file_exists($file)) {
-            return '';
-        } else {
-            return file_get_contents($file);
-        }
     }
 
 }
