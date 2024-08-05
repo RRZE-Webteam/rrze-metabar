@@ -4,7 +4,7 @@
  * Plugin Name:       RRZE Meta Bar
  * Plugin URI:        https://github.com/RRZE-Webteam/rrze-metabar
  * Description:       Add a bar with meta information / links on top of every site of a WordPress multisite environment
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.1
  * Requires PHP:      8.0
  * Author:            RRZE Webteam
@@ -21,9 +21,6 @@ defined('ABSPATH') || exit;
 
 const RRZE_PHP_VERSION = '8.0';
 const RRZE_WP_VERSION = '6.1';
-const RRZE_PLUGIN_FILE = __FILE__;
-define('RRZE_METABAR_ROOT', dirname(__FILE__));
-const RRZE_METABAR_VERSION = '1.0.0';
 
 // Automatische Laden von Klassen.
 spl_autoload_register(function ($class) {
@@ -141,7 +138,7 @@ function loaded()
         });
     } else {
         // Hauptklasse (Main) wird instanziiert.
-        $main = new Main(__FILE__);
+        $main = new Main();
         $main->onLoaded();
     }
 }

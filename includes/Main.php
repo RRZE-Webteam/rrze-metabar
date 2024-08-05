@@ -16,15 +16,6 @@ class Main
     protected $pluginFile;
 
     /**
-     * Variablen Werte zuweisen.
-     * @param string $pluginFile Pfad- und Dateiname der Plugin-Datei
-     */
-    public function __construct($pluginFile)
-    {
-        $this->pluginFile = $pluginFile;
-    }
-
-    /**
      * Es wird ausgeführt, sobald die Klasse instanziiert wird.
      */
     public function onLoaded()
@@ -32,8 +23,6 @@ class Main
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
         add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
 
-        //$settings = new Settings($this->pluginFile);
-        //$settings->onLoaded();
         new Metabar();
 
     }
@@ -45,15 +34,15 @@ class Main
     {
         wp_enqueue_style(
             'rrze-metabar',
-            plugins_url('assets/css/rrze-metabar.css', plugin_basename($this->pluginFile)),
+            plugins_url('assets/css/rrze-metabar.css', plugin()->getBasename()),
             [],
-            RRZE_METABAR_VERSION
+            plugin()->getVersion()
         );
         wp_enqueue_script(
             'rrze-metabar',
-            plugins_url('assets/js/rrze-metabar.js', plugin_basename($this->pluginFile)),
+            plugins_url('assets/js/rrze-metabar.js', plugin()->getBasename()),
             ['jquery'],
-            RRZE_METABAR_VERSION
+            plugin()->getVersion()
         );
     }
 
@@ -61,15 +50,15 @@ class Main
     {
         wp_enqueue_style(
             'rrze-metabar-admin',
-            plugins_url('assets/css/rrze-metabar-admin.css', plugin_basename($this->pluginFile)),
+            plugins_url('assets/css/rrze-metabar-admin.css', plugin()->getBasename()),
             [],
-            RRZE_METABAR_VERSION
+            plugin()->getVersion()
         );
         wp_enqueue_script(
             'rrze-metabar-admin',
-            plugins_url( 'assets/js/rrze-metabar-admin.js', plugin_basename($this->pluginFile) ),
+            plugins_url( 'assets/js/rrze-metabar-admin.js', plugin()->getBasename()),
             ['jquery'],
-            RRZE_METABAR_VERSION,
+            plugin()->getVersion(),
             ['in_footer' => true,]
         );
     }
